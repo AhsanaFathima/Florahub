@@ -1,0 +1,289 @@
+/* ========== Bouquets Page - Masonry Style ========== */
+
+/* Page heading */
+.gallery-h h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 40px 0 20px;
+  font-family: 'Playfair Display', serif;
+  color: #FFD700;
+  letter-spacing: 1px;
+}
+
+/* Masonry Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-auto-rows: 10px; /* base row height */
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+/* Each image card */
+.gallery-item {
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+/* Make masonry effect by spanning rows based on content height */
+.gallery-item img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* JS will calculate row span */
+.gallery-item {
+  grid-row-end: span var(--row-span);
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000;
+  left: 0; 
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  overflow: auto;
+}
+
+.modal-content {
+  display: block;
+  max-width: 85%;
+  max-height: 85%;
+  margin: 5% auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close:hover {
+  color: #FFD700;
+}
+
+/* Next/Prev Arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: -22px;
+  color: #fff;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.prev:hover, .next:hover {
+  color: #FFD700;
+}
+
+/* Back Button */
+.back-button {
+  display: inline-block;
+  margin: 20px auto 40px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: #FFD700;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.back-button:hover {
+  background: #e6c200;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .gallery-h h1 {
+    font-size: 2rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .modal-content {
+    max-width: 95%;
+    max-height: 75%;
+  }
+  .prev, .next {
+    font-size: 30px;
+  }
+}
+
+
+
+
+/* /* ========== Bouquets Page ========== */
+
+/* Page heading */
+/* .gallery-h h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 40px 0 20px;
+  font-family: 'Playfair Display', serif;
+  color: #FFD700;
+  letter-spacing: 1px;
+} */
+
+/* Gallery grid */
+/* .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+} */
+
+/* Each image card */
+/* .gallery-item {
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+} */
+
+/* Modal Styles */
+/* .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000;
+  left: 0; 
+  top: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  overflow: auto;
+}
+
+.modal-content {
+  display: block;
+  max-width: 85%;
+  max-height: 85%;
+  margin: 5% auto;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+} */
+
+/* Close Button */
+/* .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close:hover {
+  color: #FFD700;
+} */
+
+/* Next/Prev Arrows */
+/* .prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: -22px;
+  color: #fff;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.prev:hover, .next:hover {
+  color: #FFD700;
+} */
+
+/* Back Button */
+/* .back-button {
+  display: inline-block;
+  margin: 20px auto 40px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: #FFD700;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.back-button:hover {
+  background: #e6c200;
+} */
+
+/* Responsive Adjustments */
+/* @media (max-width: 768px) {
+  .gallery-h h1 {
+    font-size: 2rem;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+  }
+  .modal-content {
+    max-width: 95%;
+    max-height: 75%;
+  }
+  .prev, .next {
+    font-size: 30px;
+  }
+} */
+ 
