@@ -80,7 +80,7 @@ nav a:hover, nav .active {
     /* background-position: center; */
     margin: 0;
      animation: slideshow 15s infinite;
-     height: 50%;
+     height: 60%;
 
 }
 
@@ -110,10 +110,10 @@ nav a:hover, nav .active {
 } */
 
 .hero p {
-    font-size: 22px;
-    margin-bottom: 30px;
-   color: #FDF8F2;
-text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    margin-top: -30px;
+   color: #393735;
+/* text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); */
 
 }
 
@@ -818,7 +818,7 @@ footer p span{
   }
 
   .hero h1 {
-    font-size: 50px;
+    font-size: 40px;
     margin-top: 20px;
     align-items: center;
   }
