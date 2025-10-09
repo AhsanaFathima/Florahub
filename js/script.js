@@ -3,7 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Contact Form
   // =======================
   const form = document.getElementById("contactForm");
-  if (form) {
+  const thankYouPopup = document.getElementById("thankYouPopup");
+  const closePopupBtn = document.getElementById("closePopupBtn");
+
+  if (form && thankYouPopup) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -11,30 +14,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
       fetch("https://formsubmit.co/ajax/florahubflowers@gmail.com", {
         method: "POST",
-        headers: { "Accept": "application/json" },
+        headers: { Accept: "application/json" },
         body: formData,
       })
         .then((response) => response.json())
-        .then(() => {
-          document.getElementById("thankYouPopup").style.display = "block";
+        .then((data) => {
+          // Show popup
+          thankYouPopup.style.display = "flex";
           form.reset();
+
+          // Auto close after 3 seconds
+          setTimeout(() => {
+            thankYouPopup.style.display = "none";
+          }, 3000);
         })
-        .catch((error) => {
-          alert("Something went wrong. Please try again.");
-          console.error(error);
-        });
+        .catch((error) => console.error("Error:", error));
     });
 
-    const closePopupBtn = document.getElementById("closePopupBtn");
+    // Close popup manually (if button exists)
     if (closePopupBtn) {
-      closePopupBtn.addEventListener("click", function () {
-        document.getElementById("thankYouPopup").style.display = "none";
+      closePopupBtn.addEventListener("click", () => {
+        thankYouPopup.style.display = "none";
       });
     }
   }
 
   // =======================
-  // Toggle Menu
+  // Toggle Menu (Overlay)
   // =======================
   const menuToggle = document.getElementById("menuToggle");
   const menuOverlay = document.getElementById("menuOverlay");
@@ -44,9 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
     menuToggle.addEventListener("click", () => {
       menuOverlay.classList.add("open");
     });
+
     menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("open");
     });
+
     menuOverlay.addEventListener("click", (e) => {
       if (e.target === menuOverlay) {
         menuOverlay.classList.remove("open");
@@ -72,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
       modalImg.src = images[index].src;
       currentIndex = index;
 
-      // Hide menu button if exists
       if (menuToggle) menuToggle.style.display = "none";
     }
 
@@ -85,15 +92,17 @@ document.addEventListener("DOMContentLoaded", function () {
       img.addEventListener("click", () => openModal(index));
     });
 
-    if (nextBtn) nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      modalImg.src = images[currentIndex].src;
-    });
+    if (nextBtn)
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        modalImg.src = images[currentIndex].src;
+      });
 
-    if (prevBtn) prevBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      modalImg.src = images[currentIndex].src;
-    });
+    if (prevBtn)
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        modalImg.src = images[currentIndex].src;
+      });
 
     if (closeBtn) closeBtn.addEventListener("click", closeModal);
 
@@ -102,8 +111,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") currentIndex = (currentIndex + 1) % images.length, modalImg.src = images[currentIndex].src;
-      if (e.key === "ArrowLeft") currentIndex = (currentIndex - 1 + images.length) % images.length, modalImg.src = images[currentIndex].src;
+      if (e.key === "ArrowRight") {
+        currentIndex = (currentIndex + 1) % images.length;
+        modalImg.src = images[currentIndex].src;
+      }
+      if (e.key === "ArrowLeft") {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        modalImg.src = images[currentIndex].src;
+      }
       if (e.key === "Escape") closeModal();
     });
   }
@@ -114,12 +129,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector(".gallery-grid");
   if (grid) {
     const items = document.querySelectorAll(".gallery-item");
-    items.forEach(item => {
+    items.forEach((item) => {
       const img = item.querySelector("img");
       img.onload = () => {
-        const rowHeight = parseInt(getComputedStyle(grid).getPropertyValue("grid-auto-rows"));
+        const rowHeight = parseInt(
+          getComputedStyle(grid).getPropertyValue("grid-auto-rows")
+        );
         const rowGap = parseInt(getComputedStyle(grid).getPropertyValue("gap"));
-        const rowSpan = Math.ceil((img.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+        const rowSpan = Math.ceil(
+          (img.getBoundingClientRect().height + rowGap) /
+            (rowHeight + rowGap)
+        );
         item.style.setProperty("--row-span", rowSpan);
       };
       if (img.complete) img.onload();
