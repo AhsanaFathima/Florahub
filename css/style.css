@@ -7,6 +7,12 @@
 
 /* Base Styles */
 
+html {
+  overflow-y: scroll; /* Prevent layout jump from scrollbar disappearance */
+}
+
+
+
 
 body {
     margin: 0;
@@ -26,9 +32,14 @@ header {
     align-items: start;
     background-color: #fff;
     padding: 15px 15px;
+    position: sticky;
+  top: 0;
+  z-index: 1000;
     
     
 }
+
+
 
 
 
@@ -79,7 +90,7 @@ nav a:hover, nav .active {
     background-size: cover;
     /* background-position: center; */
     margin: 0;
-     animation: slideshow 15s infinite;
+     animation: slideshow 23s infinite;
      height: 60%;
 
 }
@@ -324,7 +335,7 @@ nav a:hover, nav .active {
 /* Popup content */
 .popup-content {
   position: relative;
-  background: #141313;
+  background: #E9DFD5;
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -476,20 +487,28 @@ nav a:hover, nav .active {
     transform: scale(1.05);
 } */
 
+/* Prevent header shift when modal opens */
+body.modal-open {
+  overflow: hidden;
+  padding-right: 0 !important; /* Prevent scrollbar space compensation */
+}
+
+
+
+
 
 /* full size image */
 /* Modal background */
 .modal {
   display: none;
   position: fixed;
-  z-index: 9999;
+  z-index: 99999;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.9);
   overflow: auto;
-
 }
 
 
@@ -502,7 +521,7 @@ nav a:hover, nav .active {
   padding-top: 68px;
 }
 
-.close, .prev, .next {
+ .prev, .next {
   position: absolute;
   color:  #411818;
   font-size: 40px;
@@ -511,9 +530,16 @@ nav a:hover, nav .active {
   user-select: none;
 }
 
-.close {
+
+.modal .close {
+  position: fixed;
   top: 20px;
-  right: 35px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 100000; /* Higher than modal image */
+  cursor: pointer;
 }
 
 .prev, .next {
@@ -763,7 +789,7 @@ footer p span{
 @media (max-width: 768px) {
   #menuToggle {
     display: block;
-    padding-left: 50px;
+    padding-left: 40px;
   }
   
   #mainNav {
@@ -852,5 +878,12 @@ footer p span{
     width: 50px;
     height: 50px;
     font-size: 24px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  header {
+    position: relative;
   }
 }

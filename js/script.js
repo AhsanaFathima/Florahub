@@ -65,63 +65,78 @@ document.addEventListener("DOMContentLoaded", function () {
   // =======================
   // Gallery / Modal Viewer
   // =======================
-  const images = document.querySelectorAll(".clickable-image");
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImg");
-  const closeBtn = document.querySelector(".close");
-  const prevBtn = document.querySelector(".prev");
-  const nextBtn = document.querySelector(".next");
+const images = document.querySelectorAll(".clickable-image");
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 
-  let currentIndex = 0;
+let currentIndex = 0;
 
-  if (modal && modalImg && images.length > 0) {
-    function openModal(index) {
-      modal.style.display = "block";
-      modalImg.src = images[index].src;
-      currentIndex = index;
+if (modal && modalImg && images.length > 0) {
+  function openModal(index) {
+    modal.style.display = "flex";
+    modalImg.src = images[index].src;
+    currentIndex = index;
 
-      if (menuToggle) menuToggle.style.display = "none";
-    }
+    // Prevent background scroll
+    document.body.style.overflow = "hidden";
 
-    function closeModal() {
-      modal.style.display = "none";
-      if (menuToggle) menuToggle.style.display = "block";
-    }
-
-    images.forEach((img, index) => {
-      img.addEventListener("click", () => openModal(index));
-    });
-
-    if (nextBtn)
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        modalImg.src = images[currentIndex].src;
-      });
-
-    if (prevBtn)
-      prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        modalImg.src = images[currentIndex].src;
-      });
-
-    if (closeBtn) closeBtn.addEventListener("click", closeModal);
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") {
-        currentIndex = (currentIndex + 1) % images.length;
-        modalImg.src = images[currentIndex].src;
-      }
-      if (e.key === "ArrowLeft") {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        modalImg.src = images[currentIndex].src;
-      }
-      if (e.key === "Escape") closeModal();
-    });
+    // Add class to control header safely (no manual CSS override)
+    document.body.classList.add("modal-open");
   }
+
+  function closeModal() {
+    modal.style.display = "none";
+
+    // Restore scroll
+    document.body.style.overflow = "";
+
+    // Remove modal-open class
+    document.body.classList.remove("modal-open");
+  }
+
+  // Image click → open modal
+  images.forEach((img, index) => {
+    img.addEventListener("click", () => openModal(index));
+  });
+
+  // Next / Prev buttons
+  if (nextBtn)
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      modalImg.src = images[currentIndex].src;
+    });
+
+  if (prevBtn)
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      modalImg.src = images[currentIndex].src;
+    });
+
+  // Close modal
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+  // Click outside to close
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      currentIndex = (currentIndex + 1) % images.length;
+      modalImg.src = images[currentIndex].src;
+    }
+    if (e.key === "ArrowLeft") {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      modalImg.src = images[currentIndex].src;
+    }
+    if (e.key === "Escape") closeModal();
+  });
+}
+
 
   // =======================
   // Masonry Layout
