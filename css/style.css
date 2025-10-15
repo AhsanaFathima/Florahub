@@ -123,7 +123,7 @@ nav a:hover, nav .active {
 .hero p {
     font-size: 20px;
     margin-top: -30px;
-   color: #2d2c2c;
+   color:  #491e1e;
 /* text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); */
 
 }
@@ -131,7 +131,7 @@ nav a:hover, nav .active {
 
 
 .btn {
-    background-color: #d4af37;
+    background-color: #d4af37; 
     color: #0b0c10;
     padding: 12px 30px;
     border: none;
