@@ -98,9 +98,9 @@ nav a:hover, nav .active {
 
 /* Keyframes for slideshow */
 @keyframes slideshow {
-  0%   { background-image: url("../images/9.jpg"); }
-  50%  { background-image: url("../images/6.jpg"); }
-  100% { background-image: url("../images/7.jpg"); }
+  0%   { background-image: url("../images/6.jpg"); }
+  50%  { background-image: url("../images/9.jpg"); }
+  100% { background-image: url("../images/4.jpg"); }
 }
 
 
@@ -123,7 +123,7 @@ nav a:hover, nav .active {
 .hero p {
     font-size: 20px;
     margin-top: -30px;
-   color: #393735;
+   color: #2d2c2c;
 /* text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); */
 
 }
